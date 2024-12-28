@@ -1,0 +1,6 @@
+#!/command/execlineb -P
+
+/stack/victoria-metrics/victoria-metrics-prod \
+    -storageDataPath=/data/victoria-metrics \
+    -retentionPeriod=90d \
+    -usePromCompatibleNaming

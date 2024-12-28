@@ -1,0 +1,3 @@
+#!/command/execlineb -P
+
+/stack/otelcol-contrib/otelcol-contrib --config=/stack/otelcol-contrib/config.yaml

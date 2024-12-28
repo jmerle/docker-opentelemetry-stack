@@ -1,0 +1,58 @@
+apiVersion: 1
+
+datasources:
+  - name: Metrics
+    type: prometheus
+    uid: metrics
+    url: http://localhost:8428
+    isDefault: true
+
+  - name: Traces
+    type: tempo
+    uid: traces
+    url: http://localhost:3200
+    jsonData:
+      tracesToLogsV2:
+        datasourceUid: logs
+        spanStartTimeShift: -10s
+        spanEndTimeShift: 10s
+        tags:
+          - key: service.name
+            value: service_name
+        customQuery: true
+        query: '{$${__tags}} | trace_id = "$${__trace.traceId}" | span_id = "$${__span.spanId}"'
+      tracesToMetrics:
+        datasourceUid: metrics
+        tags:
+          - key: service.name
+            value: service_name
+      tracesToProfiles:
+        datasourceUid: profiles
+        tags:
+          - key: service.name
+            value: service_name
+        profileTypeId: process_cpu:cpu:nanoseconds:cpu:nanoseconds
+      streamingEnabled:
+        search: true
+      serviceMap:
+        datasourceUid: metrics
+      nodeGraph:
+        enabled: true
+
+  - name: Logs
+    type: loki
+    uid: logs
+    url: http://localhost:3100
+    jsonData:
+      derivedFields:
+        - name: trace_id
+          matcherType: label
+          matcherRegex: trace_id
+          url: "$${__value.raw}"
+          datasourceUid: traces
+          urlDisplayLabel: "Trace: $${__value.raw}"
+
+  - name: Profiles
+    type: grafana-pyroscope-datasource
+    uid: profiles
+    url: http://localhost:4040

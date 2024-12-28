@@ -1,0 +1,43 @@
+@startuml overview
+left to right direction
+skinparam defaultTextAlignment center
+
+rectangle "<b>Applications</b>" as Apps
+rectangle "<b>Humans</b>" as Humans
+
+rectangle "<b>Port 4317</b>\nOTLP gRPC" as Port4317
+rectangle "<b>Port 4318</b>\nOTLP HTTP" as Port4318
+rectangle "<b>Port 4040</b>\nPyroscope" as Port4040
+rectangle "<b>Port 3000</b>\nGrafana" as Port3000
+
+rectangle "jmerle/opentelemetry-stack" {
+    rectangle "<b>OpenTelemetry Collector</b>\nIngester" as OTelCol
+    rectangle "<b>VictoriaMetrics</b>\nMetrics Database" as VictoriaMetrics
+    rectangle "<b>Loki</b>\nLogs Database" as Loki
+    rectangle "<b>Tempo</b>\nTraces Database" as Tempo
+    rectangle "<b>Pyroscope</b>\nProfiles Database" as Pyroscope
+    rectangle "<b>Grafana</b>\nVisualization" as Grafana
+}
+
+Apps --> Port4317
+Apps --> Port4318
+Apps --> Port4040
+
+Port4317 --> OTelCol
+Port4318 --> OTelCol
+Port4040 -[hidden]-> OTelCol
+Port4040 --> Pyroscope
+
+OTelCol --> VictoriaMetrics
+OTelCol --> Tempo
+OTelCol --> Loki
+OTelCol -[hidden]-> Pyroscope
+
+VictoriaMetrics <-- Grafana
+Tempo <-- Grafana
+Loki <-- Grafana
+Pyroscope <-- Grafana
+
+Grafana <-- Port3000
+Port3000 <-- Humans
+@enduml

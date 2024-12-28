@@ -1,0 +1,3 @@
+#!/command/execlineb -P
+
+/stack/pyroscope/pyroscope --config.file=/stack/pyroscope/config.yaml

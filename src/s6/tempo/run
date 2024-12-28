@@ -1,0 +1,3 @@
+#!/command/execlineb -P
+
+/stack/tempo/tempo --config.file=/stack/tempo/config.yaml

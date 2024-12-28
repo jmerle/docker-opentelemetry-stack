@@ -1,0 +1,62 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+  prometheus:
+    config:
+      scrape_configs:
+        - job_name: "opentelemetry-collector"
+          static_configs:
+            - targets: ["localhost:8888"]
+        - job_name: "victoria-metrics-collector"
+          static_configs:
+            - targets: ["localhost:8428"]
+        - job_name: "tempo-collector"
+          static_configs:
+            - targets: ["localhost:3200"]
+        - job_name: "loki-collector"
+          static_configs:
+            - targets: ["localhost:3100"]
+        - job_name: "pyroscope-collector"
+          static_configs:
+            - targets: ["localhost:4040"]
+        - job_name: "opentelemetry-stack-collector"
+          static_configs:
+            - targets: ["localhost:3030"]
+
+processors:
+  deltatocumulative:
+    max_stale: 5m
+  batch:
+
+exporters:
+  otlphttp/metrics:
+    endpoint: http://localhost:8428/opentelemetry
+    tls:
+      insecure: true
+  otlphttp/traces:
+    endpoint: http://localhost:4418
+    tls:
+      insecure: true
+  otlphttp/logs:
+    endpoint: http://localhost:3100/otlp
+    tls:
+      insecure: true
+
+service:
+  pipelines:
+    metrics:
+      receivers: [otlp, prometheus]
+      processors: [deltatocumulative, batch]
+      exporters: [otlphttp/metrics]
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [otlphttp/traces]
+    logs:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [otlphttp/logs]
