@@ -21,3 +21,7 @@ Retention periods are configured as follows:
 - Tempo: 30 days
 - Loki: 30 days
 - Pyroscope: 14 days
+
+You need to define two additional environment variables when running behind a reverse proxy that performs TLS termination. Assuming the stack is deployed to `https://grafana.example.com/`:
+- `GF_SERVER_DOMAIN=grafana.example.com`
+- `GF_SERVER_ROOT_URL=https://grafana.example.com/`
