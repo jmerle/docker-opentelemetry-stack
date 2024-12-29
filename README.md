@@ -21,3 +21,5 @@ Retention periods are configured as follows:
 - Tempo: 30 days
 - Loki: 30 days
 - Pyroscope: 14 days
+
+Set the `GF_SERVER_DOMAIN` environment variable to the domain Grafana is running on (e.g. `GF_SERVER_DOMAIN=grafana.example.com`) when using a reverse proxy.

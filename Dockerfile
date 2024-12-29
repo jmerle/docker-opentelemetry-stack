@@ -51,6 +51,7 @@ RUN bash -c 'if [ "$TARGETARCH" == "amd64" ]; then \
     tar -C / -Jxpf "s6-overlay-${S6_ARCH}.tar.xz" && \
     rm s6-overlay-noarch.tar.xz && \
     rm "s6-overlay-${S6_ARCH}.tar.xz"'
+ENV S6_KEEP_ENV=1
 ENTRYPOINT ["/init"]
 
 # Install Grafana
@@ -108,6 +109,7 @@ RUN bash -c 'ARCHIVE="otelcol-contrib_${OPENTELEMETRY_COLLECTOR_VERSION}_linux_$
 COPY src/opentelemetry_stack_exporter.py /stack/opentelemetry-stack-exporter/main.py
 
 # Copy component configuration
+COPY src/config/grafana-config.ini /stack/grafana/conf/custom.ini
 COPY src/config/grafana-datasources.yaml /stack/grafana/conf/provisioning/datasources/datasources.yaml
 COPY src/config/grafana-dashboards.yaml /stack/grafana/conf/provisioning/dashboards/dashboards.yaml
 COPY src/config/grafana-opentelemetry-stack-overview-dashboard.json /provisioning/grafana/dashboards/opentelemetry-stack-overview-dashboard.json
