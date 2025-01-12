@@ -32,8 +32,6 @@ datasources:
           - key: service.name
             value: service_name
         profileTypeId: process_cpu:cpu:nanoseconds:cpu:nanoseconds
-      streamingEnabled:
-        search: true
       serviceMap:
         datasourceUid: metrics
       nodeGraph:
