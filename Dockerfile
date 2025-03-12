@@ -15,9 +15,6 @@ ENV TEMPO_VERSION=2.6.1
 # See https://github.com/grafana/loki/releases
 ENV LOKI_VERSION=3.3.2
 
-# See https://github.com/grafana/pyroscope/releases
-ENV PYROSCOPE_VERSION=1.11.0
-
 # See https://github.com/open-telemetry/opentelemetry-collector/releases
 ENV OPENTELEMETRY_COLLECTOR_VERSION=0.116.0
 
@@ -63,7 +60,6 @@ RUN bash -c 'ARCHIVE="grafana-${GRAFANA_VERSION}.linux-${TARGETARCH}.tar.gz" && 
     cd grafana && \
     ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install grafana-exploretraces-app && \
     ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install grafana-lokiexplore-app && \
-    ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install grafana-pyroscope-app && \
     ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install grafana-clock-panel && \
     ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install vonage-status-panel && \
     ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install grafana-polystat-panel && \
@@ -91,13 +87,6 @@ RUN bash -c 'ARCHIVE="loki-linux-${TARGETARCH}.zip" && \
     mv "loki/loki-linux-${TARGETARCH}" loki/loki && \
     rm "${ARCHIVE}"'
 
-# Install Pyroscope
-RUN bash -c 'ARCHIVE="pyroscope_${PYROSCOPE_VERSION}_linux_${TARGETARCH}.tar.gz" && \
-    curl -sOL "https://github.com/grafana/pyroscope/releases/download/v${PYROSCOPE_VERSION}/${ARCHIVE}" && \
-    mkdir pyroscope && \
-    tar xfz "${ARCHIVE}" -C pyroscope/ && \
-    rm "${ARCHIVE}"'
-
 # Install the OpenTelemetry Collector
 RUN bash -c 'ARCHIVE="otelcol-contrib_${OPENTELEMETRY_COLLECTOR_VERSION}_linux_${TARGETARCH}.tar.gz" && \
     curl -sOL "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v${OPENTELEMETRY_COLLECTOR_VERSION}/${ARCHIVE}" && \
@@ -115,7 +104,6 @@ COPY src/config/grafana-dashboards.yaml /stack/grafana/conf/provisioning/dashboa
 COPY src/config/grafana-opentelemetry-stack-overview-dashboard.json /provisioning/grafana/dashboards/opentelemetry-stack-overview-dashboard.json
 COPY src/config/tempo-config.yaml /stack/tempo/config.yaml
 COPY src/config/loki-config.yaml /stack/loki/config.yaml
-COPY src/config/pyroscope-config.yaml /stack/pyroscope/config.yaml
 COPY src/config/otelcol-contrib-config.yaml /stack/otelcol-contrib/config.yaml
 
 # Copy s6 configuration
@@ -123,6 +111,5 @@ COPY src/s6 /etc/s6-overlay/s6-rc.d
 
 # Ports that should be exposed
 EXPOSE 3000
-EXPOSE 4040
 EXPOSE 4317
 EXPOSE 4318

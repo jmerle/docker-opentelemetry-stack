@@ -20,7 +20,7 @@ datasources:
           - key: service.name
             value: service_name
         customQuery: true
-        query: '{$${__tags}} | trace_id = "$${__trace.traceId}"
+        query: '{$${__tags}} | trace_id = "$${__trace.traceId}"'
       tracesToMetrics:
         datasourceUid: metrics
         tags:
@@ -49,8 +49,3 @@ datasources:
           url: "$${__value.raw}"
           datasourceUid: traces
           urlDisplayLabel: "Trace: $${__value.raw}"
-
-  - name: Profiles
-    type: grafana-pyroscope-datasource
-    uid: profiles
-    url: http://localhost:4040

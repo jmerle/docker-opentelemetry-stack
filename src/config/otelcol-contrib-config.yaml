@@ -20,9 +20,6 @@ receivers:
         - job_name: "loki-collector"
           static_configs:
             - targets: ["localhost:3100"]
-        - job_name: "pyroscope-collector"
-          static_configs:
-            - targets: ["localhost:4040"]
         - job_name: "opentelemetry-stack-collector"
           static_configs:
             - targets: ["localhost:3030"]
