@@ -20,7 +20,7 @@ datasources:
           - key: service.name
             value: service_name
         customQuery: true
-        query: '{$${__tags}} | trace_id = "$${__trace.traceId}" | span_id = "$${__span.spanId}"'
+        query: '{$${__tags}} | trace_id = "$${__trace.traceId}"
       tracesToMetrics:
         datasourceUid: metrics
         tags:
