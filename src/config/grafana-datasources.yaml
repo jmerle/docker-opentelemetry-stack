@@ -26,12 +26,6 @@ datasources:
         tags:
           - key: service.name
             value: service_name
-      tracesToProfiles:
-        datasourceUid: profiles
-        tags:
-          - key: service.name
-            value: service_name
-        profileTypeId: process_cpu:cpu:nanoseconds:cpu:nanoseconds
       serviceMap:
         datasourceUid: metrics
       nodeGraph:

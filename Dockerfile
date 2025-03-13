@@ -1,22 +1,22 @@
-FROM ubuntu:noble-20241118.1
+FROM ubuntu:noble-20250127
 
 # See https://github.com/just-containers/s6-overlay/releases
 ENV S6_OVERLAY_VERSION=3.2.0.2
 
 # See https://github.com/grafana/grafana/releases
-ENV GRAFANA_VERSION=11.4.0
+ENV GRAFANA_VERSION=11.5.2
 
 # See https://github.com/VictoriaMetrics/VictoriaMetrics/releases
-ENV VICTORIA_METRICS_VERSION=1.108.1
+ENV VICTORIA_METRICS_VERSION=1.113.0
 
 # See https://github.com/grafana/tempo/releases
-ENV TEMPO_VERSION=2.6.1
+ENV TEMPO_VERSION=2.7.1
 
 # See https://github.com/grafana/loki/releases
-ENV LOKI_VERSION=3.3.2
+ENV LOKI_VERSION=3.4.2
 
 # See https://github.com/open-telemetry/opentelemetry-collector/releases
-ENV OPENTELEMETRY_COLLECTOR_VERSION=0.116.0
+ENV OPENTELEMETRY_COLLECTOR_VERSION=0.121.0
 
 # This arg is set by Docker: https://docs.docker.com/extensions/extensions-sdk/extensions/multi-arch/
 ARG TARGETARCH
