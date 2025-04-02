@@ -15,7 +15,7 @@ ENV TEMPO_VERSION=2.7.2
 # See https://github.com/grafana/loki/releases
 ENV LOKI_VERSION=3.4.2
 
-# See https://github.com/open-telemetry/opentelemetry-collector/releases
+# See https://github.com/open-telemetry/opentelemetry-collector-releases/releases
 ENV OPENTELEMETRY_COLLECTOR_VERSION=0.123.1
 
 # This arg is set by Docker: https://docs.docker.com/extensions/extensions-sdk/extensions/multi-arch/
@@ -58,12 +58,12 @@ RUN bash -c 'ARCHIVE="grafana-${GRAFANA_VERSION}.linux-${TARGETARCH}.tar.gz" && 
     rm "${ARCHIVE}" && \
     mv "grafana-v${GRAFANA_VERSION}" grafana/ && \
     cd grafana && \
-    ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install grafana-exploretraces-app && \
-    ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install grafana-lokiexplore-app && \
-    ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install grafana-clock-panel && \
-    ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install vonage-status-panel && \
-    ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install grafana-polystat-panel && \
-    ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install marcusolsson-treemap-panel'
+    ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install grafana-exploretraces-app 0.2.6 && \
+    ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install grafana-lokiexplore-app 1.0.9 && \
+    ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install grafana-clock-panel 2.1.8 && \
+    ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install vonage-status-panel 2.0.2 && \
+    ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install grafana-polystat-panel 2.1.14 && \
+    ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install marcusolsson-treemap-panel 2.0.1'
 
 # Install VictoriaMetrics
 RUN bash -c 'ARCHIVE="victoria-metrics-linux-${TARGETARCH}-v${VICTORIA_METRICS_VERSION}.tar.gz" && \
