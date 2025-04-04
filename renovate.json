@@ -1,6 +1,11 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:best-practices"],
+  "extends": [
+    "config:recommended",
+    "docker:pinDigests",
+    "helpers:pinGitHubActionDigestsToSemver",
+    ":configMigration"
+  ],
   "customDatasources": {
     "grafana-plugins": {
       "defaultRegistryUrlTemplate": "https://grafana.com/api/plugins/{{packageName}}/versions",
@@ -25,6 +30,10 @@
     }
   ],
   "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    },
     {
       "matchPackageNames": ["just-containers/s6-overlay"],
       "versioning": "regex:(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)\\.(?<build>\\d+)"
