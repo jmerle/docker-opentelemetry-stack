@@ -10,44 +10,66 @@
     "grafana-plugins": {
       "defaultRegistryUrlTemplate": "https://grafana.com/api/plugins/{{packageName}}/versions",
       "format": "json",
-      "transformTemplates": ["{\"releases\": items[status = 'active'].{\"version\": version, \"releaseTimestamp\": createdAt}}"]
+      "transformTemplates": [
+        "{\"releases\": items[status = 'active'].{\"version\": version, \"releaseTimestamp\": createdAt}}"
+      ]
     }
   },
   "customManagers": [
     {
       "customType": "regex",
       "description": "Update _VERSION variables in Dockerfile",
-      "fileMatch": ["Dockerfile$"],
+      "managerFilePatterns": [
+        "/Dockerfile$/"
+      ],
       "datasourceTemplate": "github-releases",
-      "matchStrings": ["# See https://github.com/(?<packageName>.*)/releases\\sENV .*_VERSION=(?<currentValue>.*)\\s"]
+      "matchStrings": [
+        "# See https://github.com/(?<packageName>.*)/releases\\sENV .*_VERSION=(?<currentValue>.*)\\s"
+      ]
     },
     {
       "customType": "regex",
       "description": "Update Grafana plugin versions in Dockerfile",
-      "fileMatch": ["Dockerfile$"],
+      "managerFilePatterns": [
+        "/Dockerfile$/"
+      ],
       "datasourceTemplate": "custom.grafana-plugins",
-      "matchStrings": ["plugins install (?<packageName>.*) (?<currentValue>[.0-9]+)"]
+      "matchStrings": [
+        "plugins install (?<packageName>.*) (?<currentValue>[.0-9]+)"
+      ]
     }
   ],
   "packageRules": [
     {
-      "matchUpdateTypes": ["minor", "patch", "pinDigest"],
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "pinDigest"
+      ],
       "automerge": true
     },
     {
-      "matchPackageNames": ["just-containers/s6-overlay"],
+      "matchPackageNames": [
+        "just-containers/s6-overlay"
+      ],
       "versioning": "regex:(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)\\.(?<build>\\d+)"
     },
     {
-      "matchPackageNames": ["VictoriaMetrics/VictoriaMetrics"],
+      "matchPackageNames": [
+        "VictoriaMetrics/VictoriaMetrics"
+      ],
       "allowedVersions": "!/victorialogs/"
     },
     {
-      "matchPackageNames": ["grafana/loki"],
+      "matchPackageNames": [
+        "grafana/loki"
+      ],
       "allowedVersions": "!/operator/"
     },
     {
-      "matchPackageNames": ["open-telemetry/opentelemetry-collector-releases"],
+      "matchPackageNames": [
+        "open-telemetry/opentelemetry-collector-releases"
+      ],
       "allowedVersions": "!/cmd/"
     }
   ]
