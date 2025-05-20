@@ -63,7 +63,7 @@ RUN bash -c 'ARCHIVE="grafana-${GRAFANA_VERSION}.linux-${TARGETARCH}.tar.gz" && 
     ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install grafana-clock-panel 2.1.8 && \
     ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install vonage-status-panel 2.0.3 && \
     ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install grafana-polystat-panel 2.1.14 && \
-    ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install marcusolsson-treemap-panel 2.0.1'
+    ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install marcusolsson-treemap-panel 2.1.0'
 
 # Install VictoriaMetrics
 RUN bash -c 'ARCHIVE="victoria-metrics-linux-${TARGETARCH}-v${VICTORIA_METRICS_VERSION}.tar.gz" && \
