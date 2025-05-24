@@ -70,7 +70,8 @@
       "matchPackageNames": [
         "open-telemetry/opentelemetry-collector-releases"
       ],
-      "allowedVersions": "!/cmd/"
+      "allowedVersions": "!/cmd/",
+      "extractVersion": "^v(?<version>.*)"
     }
   ]
 }
