@@ -16,7 +16,7 @@ ENV TEMPO_VERSION=2.7.2
 ENV LOKI_VERSION=3.5.1
 
 # See https://github.com/open-telemetry/opentelemetry-collector-releases/releases
-ENV OPENTELEMETRY_COLLECTOR_VERSION=0.126.0
+ENV OPENTELEMETRY_COLLECTOR_VERSION=0.127.0
 
 # This arg is set by Docker: https://docs.docker.com/extensions/extensions-sdk/extensions/multi-arch/
 ARG TARGETARCH
