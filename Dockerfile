@@ -4,7 +4,7 @@ FROM ubuntu:noble-20250619@sha256:c799110a3c9f10dcb3f899e87e35683cee4e17c67eb05b
 ENV S6_OVERLAY_VERSION=3.2.1.0
 
 # See https://github.com/grafana/grafana/releases
-ENV GRAFANA_VERSION=12.0.1
+ENV GRAFANA_VERSION=v12.0.2
 
 # See https://github.com/VictoriaMetrics/VictoriaMetrics/releases
 ENV VICTORIA_METRICS_VERSION=1.121.0
