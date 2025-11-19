@@ -7,7 +7,7 @@ ENV S6_OVERLAY_VERSION=3.2.1.0
 ENV GRAFANA_VERSION=12.1.0
 
 # See https://github.com/VictoriaMetrics/VictoriaMetrics/releases
-ENV VICTORIA_METRICS_VERSION=1.129.1
+ENV VICTORIA_METRICS_VERSION=1.130.0
 
 # See https://github.com/grafana/tempo/releases
 ENV TEMPO_VERSION=2.9.0
