@@ -60,7 +60,7 @@ RUN bash -c 'ARCHIVE="grafana-${GRAFANA_VERSION}.linux-${TARGETARCH}.tar.gz" && 
     cd grafana && \
     ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install grafana-exploretraces-app 1.2.2 && \
     ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install grafana-lokiexplore-app 1.0.32 && \
-    ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install grafana-clock-panel 2.1.9 && \
+    ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install grafana-clock-panel 3.2.0 && \
     ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install vonage-status-panel 2.0.4 && \
     ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install grafana-polystat-panel 2.1.15 && \
     ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install marcusolsson-treemap-panel 2.1.1'
