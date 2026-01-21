@@ -10,7 +10,7 @@ ENV GRAFANA_VERSION=12.1.0
 ENV VICTORIA_METRICS_VERSION=1.134.0
 
 # See https://github.com/grafana/tempo/releases
-ENV TEMPO_VERSION=2.9.0
+ENV TEMPO_VERSION=2.9.1
 
 # See https://github.com/grafana/loki/releases
 ENV LOKI_VERSION=3.6.3
