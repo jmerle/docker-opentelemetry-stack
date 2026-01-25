@@ -1,7 +1,7 @@
 FROM ubuntu:noble-20260113@sha256:2cbca821cd8d21951fc437076bfea1e78a9c832f51697badda725a7166fae3d9
 
 # See https://github.com/just-containers/s6-overlay/releases
-ENV S6_OVERLAY_VERSION=3.2.1.0
+ENV S6_OVERLAY_VERSION=3.2.2.0
 
 # See https://github.com/grafana/grafana/releases
 ENV GRAFANA_VERSION=12.1.0
