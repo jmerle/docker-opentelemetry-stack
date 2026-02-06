@@ -13,7 +13,7 @@ ENV VICTORIA_METRICS_VERSION=1.135.0
 ENV TEMPO_VERSION=2.10.0
 
 # See https://github.com/grafana/loki/releases
-ENV LOKI_VERSION=3.6.4
+ENV LOKI_VERSION=3.6.5
 
 # See https://github.com/open-telemetry/opentelemetry-collector-releases/releases
 ENV OPENTELEMETRY_COLLECTOR_VERSION=0.145.0
