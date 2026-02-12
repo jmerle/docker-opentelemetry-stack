@@ -22,14 +22,14 @@ jobs:
 
       - name: Build
         if: github.event_name != 'push' || github.ref != 'refs/heads/master'
-        uses: docker/build-push-action@601a80b39c9405e50806ae38af30926f9d957c47 # v6.19.1
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6.19.2
         with:
           push: false
           tags: jmerle/opentelemetry-stack:latest
 
       - name: Build and push
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        uses: docker/build-push-action@601a80b39c9405e50806ae38af30926f9d957c47 # v6.19.1
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6.19.2
         with:
           push: true
           tags: |
