@@ -1,4 +1,4 @@
-FROM ubuntu:noble-20260113@sha256:2cbca821cd8d21951fc437076bfea1e78a9c832f51697badda725a7166fae3d9
+FROM ubuntu:noble-20260210.1@sha256:d1e2e92c075e5ca139d51a140fff46f84315c0fdce203eab2807c7e495eff4f9
 
 # See https://github.com/just-containers/s6-overlay/releases
 ENV S6_OVERLAY_VERSION=3.2.2.0
