@@ -59,7 +59,7 @@ RUN bash -c 'ARCHIVE="grafana-${GRAFANA_VERSION}.linux-${TARGETARCH}.tar.gz" && 
     mv "grafana-v${GRAFANA_VERSION}" grafana/ && \
     cd grafana && \
     ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install grafana-exploretraces-app 1.3.2 && \
-    ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install grafana-lokiexplore-app 1.0.36 && \
+    ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install grafana-lokiexplore-app 1.0.37 && \
     ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install grafana-clock-panel 3.2.2 && \
     ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install vonage-status-panel 2.0.4 && \
     ./bin/grafana cli --pluginsDir /data/grafana/plugins plugins install grafana-polystat-panel 2.1.16 && \
